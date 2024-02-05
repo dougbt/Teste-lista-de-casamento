@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 100%; /* Isso garante que o container ocupe toda a largura */
+}
+
+
+.card {
+    margin-bottom: 10px;
+    max-width: 300px; /* Adiciona uma largura máxima para o card */
+}
+
+/* Estilo para ajustar o tamanho das imagens e centralizar */
+.card .card-img-top {
+    height: auto;
+    width: 100%; /* Agora o tamanho é relativo à largura do card */
+    margin: 0 auto; /* Adiciona margem automática para centralizar */
+}
+
+/* Estilo para personalizar o texto nos cartões */
+.card .card-title {
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+}
+
+.card .card-text {
+    font-size: 1rem !important;
+}
+
+/* Remover espaçamento extra entre os cartões */
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+    align-items: center;
+}
+
+/* Ajuste para o botão ficar centralizado no card */
+.card .card-body {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+
+}
