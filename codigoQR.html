@@ -1,22 +1,30 @@
+<!-- Importe a biblioteca QRCode.js -->
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
+<!-- Div onde será exibido o código QR -->
 <div id="qrcode"></div>
 
-<script>
-    // Obtém o valor do parâmetro da URL
+<!-- Script para configurar e exibir o código QR -->
+<script type="text/javascript">
+    // Obtém os parâmetros da URL
     const urlParams = new URLSearchParams(window.location.search);
-    const chavePix = 'f82167f5-2068-4163-9de6-04c0cbdad139';
+    const chavePix = '32991410318'; // Sua chave Pix
     const valor = urlParams.get('valor');
     const mensagem = urlParams.get('mensagem');
 
-    // Cria o conteúdo para o código QR
-    const qrContent = `chavePix=${chavePix}&valor=${valor}&mensagem=${mensagem}`;
+    // Formata o valor corretamente
+    const valorFormatado = (parseFloat(valor) / 100).toFixed(2).replace('.', '');
+
+    // Concatena as informações para formar o texto do QR Code
+    const qrContent = `00020126360014br.gov.bcb.pix0114+55329914103185204000053039865${valorFormatado}5802BR5916EDUARDA LIEUTAUD6009SAO PAULO62580520SAN2024020617123308450300017br.gov.bcb.brcode01051.0.0630475F5`;
 
     // Configurações do QR Code
-    const qrcode = new QRCode(document.getElementById('qrcode'), {
+    const qrcode = new QRCode(document.getElementById("qrcode"), {
         text: qrContent,
         width: 256,
         height: 256,
-        colorDark: '#000000',
-        colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.H
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H // Nível de correção H
     });
 </script>
