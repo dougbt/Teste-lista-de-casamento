@@ -7,23 +7,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    
-    
-
     <div class="container mt-5">
         <h1 class="mb-4">Envio de Pix</h1>
 
-<div class="form-group">
-        <label for="nome">Seu nome:</label>
-        <input type="text" class="form-control" id="nome" name="nome">
-    </div>
+        <div class="form-group">
+            <label for="nome">Seu nome</label>
+            <input type="text" class="form-control" id="nome" name="nome">
+        </div>
+
         <form id="pixForm" action="processarPix.java" method="post">
             <div class="form-group">
-                <label for="valor">Valor:</label>
-                <input type="text" class="form-control" id="valor" name="valor" readonly>
+                <label for="valor">Valor</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">R$</span>
+                    </div>
+                    <input type="text" class="form-control" id="valor" name="valor" readonly>
+                </div>
             </div>
             <div class="form-group">
-                <label for="mensagem">Mensagem para os noivos:</label>
+                <label for="mensagem">Mensagem para os noivos</label>
                 <textarea class="form-control" id="mensagem" name="mensagem" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Concluir Compra</button>
@@ -35,10 +38,6 @@
             <p id="chavePix"></p>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
         // Adiciona um listener para o envio do formulário
@@ -53,37 +52,28 @@
             const urlParams = new URLSearchParams(window.location.search);
             const valor = urlParams.get('valor');
 
+            // Preenche automaticamente o campo de valor com o valor recuperado da URL
+            document.getElementById('valor').value = valor;
+
             // Exibe a chave Pix com o valor e a mensagem na tela
             const chavePix = document.getElementById('chavePix');
-            chavePix.textContent = `Sua chave Pix: [SuaChavePix] | Valor: R$${valor},00 | Mensagem: ${mensagem}`;
+            chavePix.textContent = `Pix: f82167f5-2068-4163-9de6-04c0cbdad139 | Valor: R$${valor},00 | Mensagem: ${mensagem}`;
             document.getElementById('pixInfo').style.display = 'block';
+
+            // Redireciona para a página codigoqr.html
+            window.location.href = 'codigoQR.html';
         });
-    </script>
-    <script>
-        // Função para enviar os dados para o servidor Node.js
-        const enviarDados = async (valor, mensagem) => {
-            try {
-                const response = await fetch('http://localhost:3000/enviar-email', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ valor, mensagem })
-                });
-                const data = await response.json();
-                console.log(data);
-            } catch (error) {
-                console.error('Erro ao enviar os dados:', error);
-            }
-        };
-    
-        // Recupera o valor e a mensagem do formulário
+
+        // Recupera o valor do parâmetro da URL
         const urlParams = new URLSearchParams(window.location.search);
         const valor = urlParams.get('valor');
-        const mensagem = document.getElementById('mensagem').value;
-    
-        // Envia os dados para o servidor Node.js
-        enviarDados(valor, mensagem);
-    </script>    
+        
+        // Preenche o campo de valor com o valor recuperado da URL
+        document.getElementById('valor').value = valor;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

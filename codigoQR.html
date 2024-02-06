@@ -1,0 +1,22 @@
+<div id="qrcode"></div>
+
+<script>
+    // Obtém o valor do parâmetro da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const chavePix = 'f82167f5-2068-4163-9de6-04c0cbdad139';
+    const valor = urlParams.get('valor');
+    const mensagem = urlParams.get('mensagem');
+
+    // Cria o conteúdo para o código QR
+    const qrContent = `chavePix=${chavePix}&valor=${valor}&mensagem=${mensagem}`;
+
+    // Configurações do QR Code
+    const qrcode = new QRCode(document.getElementById('qrcode'), {
+        text: qrContent,
+        width: 256,
+        height: 256,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+    });
+</script>
