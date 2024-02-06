@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #120a8f; /* Substitua pela cor desejada, pode ser um código hexadecimal, RGB, ou o nome da cor */
 }
 
 .container {
