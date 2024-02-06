@@ -1,0 +1,47 @@
+@font-face {
+    font-family: AmaticBold;
+    src: url(../fonts/AmaticSC-Bold.ttf);
+}
+
+* {
+    color: #390d2d;
+}
+
+.form{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: #ffe1c9;
+
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fac7b4;
+    border-radius: 8px;
+    width: 60% !important;
+    padding: 30px;
+}
+
+.container-title{
+    font-family: AmaticBold;
+    display: flex;
+    justify-content: center;
+}
+
+.container-form{
+    width: 90%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: medium;
+}
+
+.btn{
+    background-color: #390d2d !important;
+    border-color: black !important;
+    width: 100%;
+}
