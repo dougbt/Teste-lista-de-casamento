@@ -10,25 +10,27 @@
 </head>
 
 <body>
-    <div class="form">
-        <div class="container">
-            <h1 class="container-title">Envio de Pix</h1>
-            <div class="container-form">
-                <div class="form-group">
-                    <label for="nome">Seu nome:</label>
-                    <input type="text" class="form-control" id="nome" name="nome">
-                </div>
-                <form id="pixForm" action="processarPix.java" method="post">
-                    <div class="form-group">
-                        <label for="valor">Valor:</label>
-                        <input type="text" class="form-control" id="valor" name="valor" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="mensagem">Mensagem para os noivos:</label>
-                        <textarea class="form-control" id="mensagem" name="mensagem" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                </form>
+    
+    
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Envio de Pix</h1>
+
+<div class="form-group">
+        <label for="nome">Seu nome:</label>
+        <input type="text" class="form-control" id="nome" name="nome">
+    </div>
+        <form id="pixForm" action="processarPix.java" method="post">
+            <div class="form-group">
+                <label for="valor">Valor:</label>
+                <input type="text" class="form-control" id="valor" name="valor" readonly>
+            </div>
+            <div class="form-group">
+                <label for="mensagem">Mensagem para os noivos:</label>
+                <textarea class="form-control" id="mensagem" name="mensagem" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Concluir Compra</button>
+        </form>
 
             </div>
 
@@ -41,27 +43,29 @@
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <script>
         // Adiciona um listener para o envio do formulário
-        document.getElementById('pixForm').addEventListener('submit', function (event) {
+        document.getElementById('pixForm').addEventListener('submit', function(event) {
             // Previne o envio do formulário
             event.preventDefault();
-
+    
             // Extrai a mensagem do formulário
             const mensagem = document.getElementById('mensagem').value;
-
+    
             // Obtém o valor do parâmetro da URL
             const urlParams = new URLSearchParams(window.location.search);
             const valor = urlParams.get('valor');
-
+    
+            // Preenche automaticamente o campo de valor com o valor recuperado da URL
+            document.getElementById('valor').value = valor;
+    
             // Exibe a chave Pix com o valor e a mensagem na tela
             const chavePix = document.getElementById('chavePix');
-            chavePix.textContent = `Sua chave Pix: [SuaChavePix] | Valor: R$${valor},00 | Mensagem: ${mensagem}`;
+            chavePix.textContent = `Pix: 32991410318 | Valor: R$${valor},00 | Mensagem: ${mensagem}`;
             document.getElementById('pixInfo').style.display = 'block';
+    
+            // Redireciona para a página codigoqr.html com os parâmetros valor e mensagem
+            window.location.href = `codigoQR.html?valor=${valor}&mensagem=${mensagem}`;
         });
     </script>
     <script>
@@ -81,15 +85,15 @@
                 console.error('Erro ao enviar os dados:', error);
             }
         };
-
+    
         // Recupera o valor e a mensagem do formulário
         const urlParams = new URLSearchParams(window.location.search);
         const valor = urlParams.get('valor');
         const mensagem = document.getElementById('mensagem').value;
-
+    
         // Envia os dados para o servidor Node.js
         enviarDados(valor, mensagem);
-    </script>
+    </script>    
 </body>
 
 </html>
