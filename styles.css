@@ -1,7 +1,30 @@
+
+@font-face {
+    font-family: Cinzel;
+    src: url(assets/fonts/Cinzel-VariableFont_wght.ttf);
+ }
+@font-face {
+    font-family: Sacramento;
+    src: url(assets/fonts/Sacramento-Regular.ttf);
+ }
+@font-face {
+    font-family: GreatVibes;
+    src: url(assets/fonts/GreatVibes-Regular.ttf);
+ }
+@font-face {
+    font-family: AmaticRegular;
+    src: url(assets/fonts/AmaticSC-Regular.ttf);
+ }
+@font-face {
+    font-family: AmaticBold;
+    src: url(assets/fonts/AmaticSC-Bold.ttf);
+ }
+
 *{
     background-color: #ffe1c9;
     color: #390d2d;
 }
+
 
 .header{
     display: flex;
@@ -10,9 +33,37 @@
     align-items: center;
 }
 
+.header-title{
+    margin-top: 30px;
+     font-family: GreatVibes; 
+    /*font-family: Cinzel;*/
+    font-size: 70px;
+    /*font-size: 50px; */
+}
+
+.header-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #fac7b4 !important;
+    padding: 40px;
+    width: 90%;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.header-img{
+    width: 300px;
+}
+
 .header-paragraph{
     width: 60%;
+    margin: 10px;
     text-align: center;
+    background-color: transparent;
+    /* font-family: Sacramento; */
+    font-family: AmaticBold;
+    font-size: 35px;
 }
 
 img{
@@ -26,6 +77,13 @@ img{
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-bottom: 30px;
+}
+
+.list-title{
+    /* font-family: Cinzel; */
+    font-family: GreatVibes;
+    font-size: 50px;
 }
 
 .btn{
@@ -46,5 +104,14 @@ img{
 }
 
 .card {
+    display: flex;
+    justify-content: center;
     margin: 30px;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
