@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envio de Pix</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Envio de Pix</h1>
+    </header>
+    <div class="container">
+        <form action="processarPix.php" method="POST">
+            <div class="form-group">
+                <label for="valor">Valor:</label>
+                <input type="text" id="valor" name="valor" class="form-control" placeholder="Digite o valor" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar Pix</button>
+        </form>
+    </div>
+</body>
+</html>

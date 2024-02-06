@@ -7,11 +7,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+    
+    
 
     <div class="container mt-5">
         <h1 class="mb-4">Envio de Pix</h1>
 
-        <form action="processarPix.java" method="post">
+<div class="form-group">
+        <label for="nome">Seu nome:</label>
+        <input type="text" class="form-control" id="nome" name="nome">
+    </div>
+        <form id="pixForm" action="processarPix.java" method="post">
             <div class="form-group">
                 <label for="valor">Valor:</label>
                 <input type="text" class="form-control" id="valor" name="valor" readonly>
@@ -22,6 +28,12 @@
             </div>
             <button type="submit" class="btn btn-primary">Concluir Compra</button>
         </form>
+
+        <!-- Div para exibir a chave Pix após o envio do formulário -->
+        <div id="pixInfo" style="display: none;">
+            <h4>Chave Pix:</h4>
+            <p id="chavePix"></p>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -29,10 +41,49 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        // Recupera o valor do parâmetro da URL e preenche o campo de valor
+        // Adiciona um listener para o envio do formulário
+        document.getElementById('pixForm').addEventListener('submit', function(event) {
+            // Previne o envio do formulário
+            event.preventDefault();
+
+            // Extrai a mensagem do formulário
+            const mensagem = document.getElementById('mensagem').value;
+
+            // Obtém o valor do parâmetro da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const valor = urlParams.get('valor');
+
+            // Exibe a chave Pix com o valor e a mensagem na tela
+            const chavePix = document.getElementById('chavePix');
+            chavePix.textContent = `Sua chave Pix: [SuaChavePix] | Valor: R$${valor},00 | Mensagem: ${mensagem}`;
+            document.getElementById('pixInfo').style.display = 'block';
+        });
+    </script>
+    <script>
+        // Função para enviar os dados para o servidor Node.js
+        const enviarDados = async (valor, mensagem) => {
+            try {
+                const response = await fetch('http://localhost:3000/enviar-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ valor, mensagem })
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Erro ao enviar os dados:', error);
+            }
+        };
+    
+        // Recupera o valor e a mensagem do formulário
         const urlParams = new URLSearchParams(window.location.search);
         const valor = urlParams.get('valor');
-        document.getElementById('valor').value = `R$${valor},00`;
-    </script>
+        const mensagem = document.getElementById('mensagem').value;
+    
+        // Envia os dados para o servidor Node.js
+        enviarDados(valor, mensagem);
+    </script>    
 </body>
 </html>
