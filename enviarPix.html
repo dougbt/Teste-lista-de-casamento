@@ -12,19 +12,19 @@
 <body>
     <div class="form">
         <div class="container">
-            <h1 class="container-title">Envio de Pix</h1>
+            <h1 class="container-title">Enviar Presente</h1>
             <div class="container-form">
                 <div class="form-group">
-                    <label for="nome">Seu nome:</label>
+                    <label for="nome">Seu nome</label>
                     <input type="text" class="form-control" id="nome" name="nome">
                 </div>
                 <form id="pixForm" action="processarPix.java" method="post">
                     <div class="form-group">
-                        <label for="valor">Valor:</label>
+                        <label for="valor">Valor</label>
                         <input type="text" class="form-control" id="valor" name="valor" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="mensagem">Mensagem para os noivos:</label>
+                        <label for="mensagem">Mensagem para os noivos</label>
                         <textarea class="form-control" id="mensagem" name="mensagem" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar</button>
@@ -42,25 +42,32 @@
     </div>
 
     <script>
+        // Obtém o valor do parâmetro "valor" da URL quando a página for carregada
+        window.addEventListener('load', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const valor = urlParams.get('valor');
+            
+            // Preenche automaticamente o campo de valor com o valor recuperado da URL
+        document.getElementById('valor').value = valor ? `R$ ${valor},00` : '';
+        });
+
+        // Event listener para o envio do formulário
         document.getElementById('pixForm').addEventListener('submit', function(event) {
             // Previne o envio do formulário
             event.preventDefault();
-    
+            
             // Extrai a mensagem do formulário
             const mensagem = document.getElementById('mensagem').value;
-    
+            
             // Obtém o valor do parâmetro da URL
             const urlParams = new URLSearchParams(window.location.search);
             const valor = urlParams.get('valor');
-    
-            // Preenche automaticamente o campo de valor com o valor recuperado da URL
-            document.getElementById('valor').value = valor;
-    
+            
             // Exibe a chave Pix com o valor e a mensagem na tela
             const chavePix = document.getElementById('chavePix');
             chavePix.textContent = `Pix: 32991410318 | Valor: R$${valor},00 | Mensagem: ${mensagem}`;
             document.getElementById('pixInfo').style.display = 'block';
-    
+            
             // Redireciona para a página codigoqr.html com os parâmetros valor e mensagem
             window.location.href = `codigoQR.html?valor=${valor}&mensagem=${mensagem}`;
         });
