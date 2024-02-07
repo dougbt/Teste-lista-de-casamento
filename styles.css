@@ -153,3 +153,9 @@ button {
     font-weight: bold;
     vertical-align: left;
 }
+
+@media screen and (max-width: 900px) {
+    .header-title {
+        font-size: 50px; 
+    }
+}
