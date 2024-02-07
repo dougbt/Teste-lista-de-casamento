@@ -15,9 +15,10 @@
             <h1 class="container-title">Enviar Presente</h1>
             <div class="container-form">
                 <form id="pixForm" method="POST" name="mensagens" data-netlify="true">
-                    
-                        <label for="nome">Seu nome<input type="text" class="form-control" id="nome" name="nome"></label>
-    
+                        <div>
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control" id="nome" name="nome">
+                        </div>
                     
                     <div class="form-group">
                         <label for="valor">Valor</label>
@@ -89,7 +90,7 @@
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams(formData).toString(),
   })
-    .then(() => alert("Thank you for your submission"))
+    .then(() => alert("Obrigado pelo presente! ♥"))
     .catch((error) => alert(error));
 };
 
