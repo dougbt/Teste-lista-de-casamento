@@ -14,7 +14,7 @@
         <div class="container">
             <h1 class="container-title">Enviar Presente</h1>
             <div class="container-form">
-                <form id="pixForm" method="POST" name="mensagens" data-netlify="true" data-netlify-recaptcha="true">
+                <form id="pixForm" method="POST" name="mensagens" data-netlify="true">
                     
                         <label for="nome">Seu nome<input type="text" class="form-control" id="nome" name="nome"></label>
     
@@ -77,6 +77,27 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const handleSubmit = (event) => {
+  event.preventDefault();
+
+  const myForm = event.target;
+  const formData = new FormData(myForm);
+  
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString(),
+  })
+    .then(() => alert("Thank you for your submission"))
+    .catch((error) => alert(error));
+};
+
+document
+  .querySelector("form")
+  .addEventListener("submit", handleSubmit);
+
+    </script>
 </body>
 
 </html>
