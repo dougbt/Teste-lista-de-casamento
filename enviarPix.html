@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagamento</title>
+    <title>Enviar Presente</title>
     <link rel="stylesheet" href="assets/css/enviarPix.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
@@ -49,7 +49,13 @@
             const valor = urlParams.get('valor');
             
             // Preenche automaticamente o campo de valor com o valor recuperado da URL
-        document.getElementById('valor').value = valor ? `R$ ${valor},00` : '';
+            if (valor !== "") {
+    document.getElementById('valor').value = `R$ ${valor},00`;
+} else {
+    document.getElementById('valor').value = "Favor inserir o valor desejado durante o pagamento pelo banco.";
+}
+
+        
         });
 
         // Event listener para o envio do formulário
