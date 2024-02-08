@@ -194,6 +194,8 @@ button {
 #rodape{
     background-color: #fac7b4 ;
     font-family: AmaticBold;
+    display: flex;
+    flex-direction: column;
 }
 
 #desenvolvido{
