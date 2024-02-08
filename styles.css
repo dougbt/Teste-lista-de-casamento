@@ -159,3 +159,38 @@ button {
         font-size: 50px; 
     }
 }
+
+@media screen and (max-width: 600px) {
+    #rodape{
+       text-align: center;
+       font-family: GreatVibes;
+       display: flex;
+       justify-content: space-between;
+    }
+ }
+
+#desenvolvido{
+    color: #390d2d;
+    font-weight: bold;
+    text-align: center;
+}
+
+#icond, #icong{
+    margin-top: 10px;
+    color: #390d2d; 
+    text-decoration: none;
+    font-size: 24px; 
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    margin: 2px;
+    align-items: center;
+}
+
+#icond a, #icong a {
+     margin: 0 3px;
+}
+
+#icong a:first-child {
+    margin-left:3px;
+}
